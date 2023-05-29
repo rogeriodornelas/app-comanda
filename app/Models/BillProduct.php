@@ -11,7 +11,7 @@ class BillProduct extends Model
 
     protected $table = 'bills_products';
 
-    protected $fillable = ['bill_id', 'product_id'];
+    protected $fillable = ['bill_id', 'product_id', 'bol_paid'];
 
     /**
      * Relationship with Bill model.

@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bills_products', function (Blueprint $table) {
+        Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('bill_id');
-            $table->unsignedBigInteger('product_id');
-            $table->boolean('bol_paid')->default(false);
+            $table->string('number');
+            $table->string('description')->nullable();
+            $table->integer('number_of_chairs');
             $table->unsignedBigInteger('user_creator_id');
             $table->timestamps();
-            $table->softDeletes();
 
-            // Foreign key constraints
-            $table->foreign('bill_id')->references('id')->on('bills')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            // Foreign key constraint
             $table->foreign('user_creator_id')->references('id')->on('users');
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bills_products');
+        Schema::dropIfExists('tables');
     }
 };
